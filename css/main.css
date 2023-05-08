@@ -21,30 +21,45 @@ body {
 }
 
 #dealer-cards {
-    border: 2px dashed grey;
+    border: 2px dashed #92832e;
 }
 
 #dealer-cards img {
     height: 25vmin;
-    background-color: rgb(219, 215, 215);
 }
 
 #player-cards {
-    border: 2px dashed grey;
+    border: 2px dashed #92832e;
 }
 
 #player-cards img{
     height: 25vmin;
-    background-color: rgb(219, 215, 215);
 }
 
 #hit-btn {
-    height: 5vmin;
-    width: 10vmin;
+    /* height: 4vmin;
+    width: 7vmin; */
 }
 #stand-btn {
-    height: 5vmin;
-    width: 10vmin;
+    /* height: 4vmin;
+    width: 7vmin; */
 }
 
+#deal-btn {
+    /* height: 4vmin;
+    width: 7vmin; */
+    margin: 10px 0 0;
+}
+
+#betting-controls {
+    text-align: center;
+}
+
+#bet-btns {
+    border: 2px solid #92832e;
+}
+
+#play-btns {
+    padding: 5px;
+}
   

@@ -11,22 +11,34 @@
 </head>
 <body>
     <h1>BLACK JACK</h1>
+    <h1 id="msg"></h1>
     <h2>Dealer:<span id="dealer-sum"></span></h2>
-    <div id="dealer-cards">
-        <img src="css/card-library/images/backs/blue.svg">
-        <img src="css/card-library/images/diamonds/diamonds-J.svg">
-        
+    <div id="dealer-hand">
+        <!-- <div id="1st-card"></div>
+        <div class="card large dA"> </div> -->
     </div>
     <h2>Player:<span id="player-sum"></span></h2>
-    <div id="player-cards">
-        <img src="css/card-library/images/diamonds/diamonds-J.svg">
-        <img src="css/card-library/images/diamonds/diamonds-J.svg">
+    <div id="player-hand">
+        <!-- <div class="card large c05"></div>
+        <div class="card large s07"> </div> -->
     </div>
-    <div id="buttons">
+    <div id="play-btns"> 
         <button id="hit-btn">HIT</button>
         <button id="stand-btn">STAND</button>
-    </div>
-    
-    <div id="bet-amounts">Bet Amounts</section>
+    </div> 
+    <section id="betting-controls">
+        <div id="bet-controls">
+            <h3>Select bet amount:</h3>
+            <button>$25</button>
+            <button>$50</button>
+            <button>$100</button>
+        </div>
+    </section>
+    <section id="wager">
+        <div>Bet Amount: $<span id="bet"></span></div>
+        <div>Bank: $<span id="bank"></span></div>
+    </section>
+    <button id="deal-btn">DEAL</button>    
+    <!-- <div id="bet-amounts">Bet Amounts</section> -->
 </body>
 </html>
