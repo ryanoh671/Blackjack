@@ -31,21 +31,17 @@ const dealerTotalEl = document.getElementById('dealer-sum');
 const playerTotalEl = document.getElementById('player-sum');
 const betEl = document.getElementById('bet');
 const bankEl = document.getElementById('bank');
+const hitBtn = document.getElementById('hit-btn');
+const standBtn = document.getElementById('stand-btn');
 
-
-// const hitBtn = document.getElementById('hit-btn');
-// const standBtn = document.getElementById('stand-btn');
 
   /*----- event listeners -----*/
 
   dealBtn.addEventListener('click', handleDeal);
   document.getElementById('bet-controls').addEventListener('click', handleBet);
+  hitBtn.addEventListener('click', handleHit);
+  standBtn.addEventListener('click', handleStand);
   
-  
-  // hitBtn.addEventListener('click', handleHit);
-  // standBtn.addEventListener('click', handleStand);
-
-  // dealbtn.addEventListener('click', handleDeal)
   
   /*----- functions -----*/
   init() 
@@ -84,12 +80,12 @@ function handleBet(evt) {
 
 function handleDeal() {
   // outcome = null;
+  deck = getNewShuffledDeck();
   shuffledDeck = getNewShuffledDeck();
   dHand.push(shuffledDeck.pop(), shuffledDeck.pop())
   pHand.push(shuffledDeck.pop(), shuffledDeck.pop())
   dTotal = getHandTotal(dHand);
   pTotal = getHandTotal(pHand);
-  bank -= bet
   if (dTotal === 21 && pTotal === 21) {
     outcome = 'T';
   } else if (dTotal === 21) {
@@ -110,13 +106,23 @@ function handleDeal() {
   bet = 0;
 }
 
+function handleHit() {
+  pHand.push(deck.pop());
+  pTotal = getHandTotal(pHand);
+  if (pTotal > 21) {
+    outcome = 'D';
+    settleBet();
+  }
+  render();
+}
+
 function render() {
   renderHands();
   bankEl.innerHTML = bank;
   betEl.innerHTML = bet;
   // renderControls();
   // renderBetBtns();
-  msgEl.innerHTML = MSG_LOOPUP[outcome];
+  msgEl.innerHTML = MSG_LOOKUP[outcome];
 };
 
 // function renderBetBtns() {
