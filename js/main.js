@@ -33,16 +33,16 @@ const betEl = document.getElementById('bet');
 const bankEl = document.getElementById('bank');
 
 
-// const dealBtn = document.getElementById('deal-btn') 
-// const betBtns = document.querySelectorAll('#bet-controls > button');
 // const hitBtn = document.getElementById('hit-btn');
 // const standBtn = document.getElementById('stand-btn');
 
   /*----- event listeners -----*/
 
   dealBtn.addEventListener('click', handleDeal);
+  document.getElementById('bet-controls').addEventListener('click', handleBet);
+  
+  
   // hitBtn.addEventListener('click', handleHit);
-  // betBtns.addEventListener('click', handleBet);
   // standBtn.addEventListener('click', handleStand);
 
   // dealbtn.addEventListener('click', handleDeal)
@@ -70,8 +70,17 @@ function init() {
   bank = 1000;
   bet = 0;
   render();
-};
+}
 
+function handleBet(evt) {
+   const btn = evt.target;
+   if (btn.tagName !== 'BUTTON') return;
+   const betAmt = parseInt(btn.innerText.replace('$', ''));
+   console.log(betAmt);
+   bet += betAmt;
+   bank -= betAmt;
+   render();
+}
 
 function handleDeal() {
   // outcome = null;
@@ -110,6 +119,13 @@ function render() {
   msgEl.innerHTML = MSG_LOOPUP[outcome];
 };
 
+// function renderBetBtns() {
+//   renderBetBtns.forEach(function(btn) {
+//     const btnAmt = parseInt(btn.innerText.replace('$', ''));
+//     btn.disabled = btnAmt > bank;  
+//   });
+// }
+
 function renderHands() {
   playerTotalEl.innerHTML = pTotal;
   dealerTotalEl.innerHTML = outcome ? dTotal : '??';
@@ -121,11 +137,11 @@ function getHandTotal(hand) {
     let total = 0;
     let aces = 0;
     hand.forEach(function(card) {
-      total +=card.value;
+      total += card.value;
       if (card.value === 11) aces++;
     });
     while (total > 21 && aces) {
-      total -=10;
+      total -= 10;
       aces--;
     }
     return total;
