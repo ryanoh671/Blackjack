@@ -7,7 +7,8 @@ const MSG_LOOKUP = {
   'P': 'Player Wins!',
   'D': 'Dealer Wins!',
   'PBJ': 'Player Has Blackjack',
-  'DBJ': 'Dealer Has Blackjack'
+  'DBJ': 'Dealer Has Blackjack',
+  'T': "It's a Push"
 }
 
 const mainDeck = buildMainDeck();
@@ -33,7 +34,7 @@ const betEl = document.getElementById('bet');
 const bankEl = document.getElementById('bank');
 const hitBtn = document.getElementById('hit-btn');
 const standBtn = document.getElementById('stand-btn');
-
+const betBtns = document.querySelectorAll('#bet-controls > button');
 
   /*----- event listeners -----*/
 
@@ -46,17 +47,7 @@ const standBtn = document.getElementById('stand-btn');
   /*----- functions -----*/
   init() 
 
-// function handleStand() {
-//   if (pTotal === dTotal) {
-//     outcome = 'T';
-//   } else if (dTotal > pTotal) {
-//     outcome = 'D';
-//   } else {
-//     outcome = 'P';
-//   }
-//   settleBet();
-//   render();
-// }
+
 
 function init() {
   outcome = null;
@@ -72,14 +63,13 @@ function handleBet(evt) {
    const btn = evt.target;
    if (btn.tagName !== 'BUTTON') return;
    const betAmt = parseInt(btn.innerText.replace('$', ''));
-   console.log(betAmt);
    bet += betAmt;
    bank -= betAmt;
    render();
 }
 
 function handleDeal() {
-  // outcome = null;
+  outcome = null;
   deck = getNewShuffledDeck();
   shuffledDeck = getNewShuffledDeck();
   dHand.push(shuffledDeck.pop(), shuffledDeck.pop())
@@ -102,7 +92,7 @@ function handleDeal() {
     bank += bet + (bet * 1.5);
   } else if (outcome === 'P') {
     bank += bet * 2;
-  }
+  } 
   bet = 0;
 }
 
@@ -116,21 +106,34 @@ function handleHit() {
   render();
 }
 
+
+function handleStand() {
+  if (pTotal === dTotal) {
+    outcome = 'T';
+  } else if (dTotal > pTotal) {
+    outcome = 'D';
+  } else {
+    outcome = 'P';
+  }
+  settleBet();
+  render();
+}
+
 function render() {
   renderHands();
   bankEl.innerHTML = bank;
   betEl.innerHTML = bet;
-  // renderControls();
-  // renderBetBtns();
+  renderBetBtns();
   msgEl.innerHTML = MSG_LOOKUP[outcome];
 };
 
-// function renderBetBtns() {
-//   renderBetBtns.forEach(function(btn) {
-//     const btnAmt = parseInt(btn.innerText.replace('$', ''));
-//     btn.disabled = btnAmt > bank;  
-//   });
-// }
+function renderBetBtns() {
+  betBtns.forEach(function(btn) {
+  const btnAmt = parseInt(btn.innerText.replace('$', ''));
+  btn.disabled = btnAmt > bank;  
+  });
+}
+
 
 function renderHands() {
   playerTotalEl.innerHTML = pTotal;
