@@ -14,30 +14,29 @@ const mainDeck = buildMainDeck();
 
 
 
-// const dealbtn = document.getElementById('deal-btn')
-// const dealerHand = document.getElementById('dealer-cards')
 
-  /*----- state variables -----*/
-  let deck; // shuffled deck
-  let pHand, dHand; // player and dealer hands (arrays)
-  let pTotal, dTotal; // best point value of hand
-  let bank, bet; // bank how much money we have & bet is the amount of the bet
-  let outcome; // result of the hand (see MSG_LOOKUP)
+/*----- state variables -----*/
+let deck; // shuffled deck
+let pHand, dHand; // player and dealer hands (arrays)
+let pTotal, dTotal; // best point value of hand
+let bank, bet; // bank how much money we have & bet is the amount of the bet
+let outcome; // result of the hand (see MSG_LOOKUP)
 
-  /*----- cached elements  -----*/
-const msgEl = document.getElementById('msg');
+/*----- cached elements  -----*/
+const dealBtn = document.getElementById('deal-btn');
 const dealerHandEl = document.getElementById('dealer-hand');
-const dealerTotalEl = document.getElementById('dealer-sum');
 const playerHandEl = document.getElementById('player-hand');
+const msgEl = document.getElementById('msg');
+const dealerTotalEl = document.getElementById('dealer-sum');
 const playerTotalEl = document.getElementById('player-sum');
-const betEl = document.getElementById('bet');
-const bankEl = document.getElementById('bank');
+// const betEl = document.getElementById('bet');
+// const bankEl = document.getElementById('bank');
 
 
-const dealBtn = document.getElementById('deal-btn') 
-const betBtns = document.querySelectorAll('#bet-controls > button');
-const hitBtn = document.getElementById('hit-btn');
-const standBtn = document.getElementById('stand-btn');
+// const dealBtn = document.getElementById('deal-btn') 
+// const betBtns = document.querySelectorAll('#bet-controls > button');
+// const hitBtn = document.getElementById('hit-btn');
+// const standBtn = document.getElementById('stand-btn');
 
   /*----- event listeners -----*/
 
@@ -73,55 +72,65 @@ function init() {
   render();
 };
 
+
+
 function render() {
   renderHands();
   bankEl.innerHTML = bank;
   betEl.innerHTML = bet;
-  renderControls();
-  renderBetBtns();
+  // renderControls();
+  // renderBetBtns();
   msgEl.innerHTML = MSG_LOOPUP[outcome];
 };
 
-
+function renderHands() {
+  playerTotalEl.innerHTML = pTotal;
+  dealerTotalEl.innerHTML = outcome ? dTotal : '??';
+  playerHandEl.innerHTML = pHand.map(card => `<div class="card ${card.face}"><;div>`).join('');
+  dealerHandEl.innerHTML = dHand.map((card, idx) => `<div class="card ${idx === 1 && !outcome ? 'back' : card.face}"></div>`).join('');
+}
 
 function handleDeal() {
-  outcome = null;
-  hands = getNewShuffledDeck();
-  dcards = [];
-  pcards = [];
-  dcards = [deck.pop(), deck.pop()];
-  pcards = [deck.pop(), deck.pop()];
-  for (let i = 0; i < 2; i++) {
-    dcards.push(hands.pop());
+  shuffledDeck = getNewShuffledDeck();
+  dHand.push(shuffledDeck.pop(), shuffledDeck.pop())
+  pHand.push(shuffledDeck.pop(), shuffledDeck.pop())
+  dTotal = getHandTotal(dHand);
+  pTotal = getHandTotal(pHand);
+  bank -= bet
+  if (dTotal === 21 && pTotal === 21) {
+    outcome = 'T';
+  } else if (dTotal === 21) {
+    outcome = 'DBJ';
+  } else if (pTotal === 21) {
+    outcome = 'PBJ';
   }
-  dealerHandEl.innerHTML = dcards.map(dcard => `<div class="card ${dcard.face}"></div>`).join('');
-  // console.log(dcards)
-  for (let i = 0; i < 2; i++) {
-    pcards.push(hands.pop());
-  }
-  dealerHandEl.innerHTML = pcards.map(pcard => `<div class="card ${pcard.face}"></div>`).join('');
+  if (outcome) settleBet();
+  render();
   };
 
-// function handleDeal() {
-//   outcome = null;
-//   deck = getNewShuffledDeck();
-//   dHand = [];
-//   pHand = [];
-//   dHand.push(deck.pop(), deck.pop());
-//   pHand.push(deck.pop(), deck.pop());
-//   // Check for blackjack
-//   // dTotal = getHandTotal(dHand);
-//   // pTotal = getHandTotal(pHand);
-//   // if (dTotal === 21 && pTotal === 21) {
-//   //   outcome = 'T';
-//   // } else if (dTotal === 21) {
-//   //   outcome = 'DBJ';
-//   // } else if (pTotal === 21) {
-//   //   outcome = 'PBJ';
-//   // }
-//   // if (outcome) settleBet();
-//   // render();
-// }
+  function settleBet() {
+    if (outcome === 'PBJ') {
+    bank += bet + (bet * 1.5);
+  } else if (outcome === 'P') {
+    bank += bet * 2;
+  }
+  bet = 0;
+}
+
+
+function getHandTotal(hand) {
+  hand.forEach()
+    total = 0
+    aces = 0
+    while (total > 21 && aces) {
+      total -= 10 
+      aces--
+  }
+
+  return total;
+}
+
+
 
 
 
@@ -149,7 +158,7 @@ function getNewShuffledDeck() {
   const newShuffledDeck = [];
   while (tempDeck.length) {
     //Get a random index for a card still in the tempDeck
-    const rndIdx = Math.floor(Math.random() * tempDeck.lenth);
+    const rndIdx = Math.floor(Math.random() * tempDeck.length);
     // Note the [0] after splice - this is because splice always returns an array and we just want the card object in that array
     newShuffledDeck.push(tempDeck.splice(rndIdx, 1)[0]); 
   }

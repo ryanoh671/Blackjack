@@ -4,14 +4,14 @@
 }
 
 html {
-    background: url("card-library/backimg.png");
+    /* background: url("card-library/backimg.png"); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
 }
 body {
-    color: #92832e;
+    color: black;
     height: 100vh;
     margin: 0;
     display: flex;
