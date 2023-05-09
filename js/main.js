@@ -35,6 +35,7 @@ const bankEl = document.getElementById('bank');
 const hitBtn = document.getElementById('hit-btn');
 const standBtn = document.getElementById('stand-btn');
 const betBtns = document.querySelectorAll('#bet-controls > button');
+const betControlsEl = document.getElementById('bet-controls');
 
   /*----- event listeners -----*/
 
@@ -123,6 +124,7 @@ function render() {
   renderHands();
   bankEl.innerHTML = bank;
   betEl.innerHTML = bet;
+  renderControls();
   renderBetBtns();
   msgEl.innerHTML = MSG_LOOKUP[outcome];
 };
@@ -133,7 +135,14 @@ function renderBetBtns() {
   btn.disabled = btnAmt > bank;  
   });
 }
+function handInPlay() {
+  return pHand.length && !outcome;
+}
 
+function renderControls() {
+ betControlsEl.style.visibility = handInPlay() ? 'hidden' : 'visible';
+ dealBtn.style.visibility = bet >= 50 && !handInPlay() ? 'visible' : 'hidden';
+}
 
 function renderHands() {
   playerTotalEl.innerHTML = pTotal;
