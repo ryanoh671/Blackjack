@@ -29,8 +29,8 @@ const playerHandEl = document.getElementById('player-hand');
 const msgEl = document.getElementById('msg');
 const dealerTotalEl = document.getElementById('dealer-sum');
 const playerTotalEl = document.getElementById('player-sum');
-// const betEl = document.getElementById('bet');
-// const bankEl = document.getElementById('bank');
+const betEl = document.getElementById('bet');
+const bankEl = document.getElementById('bank');
 
 
 // const dealBtn = document.getElementById('deal-btn') 
@@ -73,24 +73,8 @@ function init() {
 };
 
 
-
-function render() {
-  renderHands();
-  bankEl.innerHTML = bank;
-  betEl.innerHTML = bet;
-  // renderControls();
-  // renderBetBtns();
-  msgEl.innerHTML = MSG_LOOPUP[outcome];
-};
-
-function renderHands() {
-  playerTotalEl.innerHTML = pTotal;
-  dealerTotalEl.innerHTML = outcome ? dTotal : '??';
-  playerHandEl.innerHTML = pHand.map(card => `<div class="card ${card.face}"><;div>`).join('');
-  dealerHandEl.innerHTML = dHand.map((card, idx) => `<div class="card ${idx === 1 && !outcome ? 'back' : card.face}"></div>`).join('');
-}
-
 function handleDeal() {
+  // outcome = null;
   shuffledDeck = getNewShuffledDeck();
   dHand.push(shuffledDeck.pop(), shuffledDeck.pop())
   pHand.push(shuffledDeck.pop(), shuffledDeck.pop())
@@ -117,19 +101,35 @@ function handleDeal() {
   bet = 0;
 }
 
+function render() {
+  renderHands();
+  bankEl.innerHTML = bank;
+  betEl.innerHTML = bet;
+  // renderControls();
+  // renderBetBtns();
+  msgEl.innerHTML = MSG_LOOPUP[outcome];
+};
 
-function getHandTotal(hand) {
-  hand.forEach()
-    total = 0
-    aces = 0
-    while (total > 21 && aces) {
-      total -= 10 
-      aces--
-  }
-
-  return total;
+function renderHands() {
+  playerTotalEl.innerHTML = pTotal;
+  dealerTotalEl.innerHTML = outcome ? dTotal : '??';
+  playerHandEl.innerHTML = pHand.map(card => `<div class="card ${card.face}"></div>`).join('');
+  dealerHandEl.innerHTML = dHand.map((card, idx) => `<div class="card ${idx === 1 && !outcome ? 'back' : card.face}"></div>`).join('');
 }
 
+function getHandTotal(hand) {
+    let total = 0;
+    let aces = 0;
+    hand.forEach(function(card) {
+      total +=card.value;
+      if (card.value === 11) aces++;
+    });
+    while (total > 21 && aces) {
+      total -=10;
+      aces--;
+    }
+    return total;
+  }
 
 
 
