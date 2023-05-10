@@ -89,7 +89,7 @@ function handleDeal() {
   if (outcome) settleBet();
   render();
   };
-
+  
   function settleBet() {
     if (outcome === 'PBJ') {
     bank += bet + (bet * 1.5);
@@ -106,23 +106,41 @@ function handleHit() {
   pTotal = getHandTotal(pHand);
   if (pTotal > 21) {
     outcome = 'D';
+  } else if (pTotal = 21) {
+    outcome = 'PBJ';
   }
   settleBet();
   render();
 }
 
 function handleStand() {
-    if (pTotal === dTotal) {
-      outcome = 'T';
-    } else if (dTotal > pTotal) {
-      outcome = 'D';
-    } else {
-      outcome = 'P';
-    }
-    settleBet();
-    render();
-  };
+    dealerPlay(function () {
+      if (pTotal === dTotal) {
+        outcome = 'T';
+      } else if (dTotal > pTotal) {
+        outcome = 'D';
+      } else {
+        outcome = 'P';
+      }
+      settleBet();
+      render();
+    });
+  }
 
+function dealerPlay(cb) {
+  outcome = 'D';
+  renderHands();
+  // while (dTotal < 17) 
+    setTimeout(function() {
+      if (dTotal < 17) {
+        dHand.push(shuffledDeck.pop());
+        dTotal = getHandTotal(dHand);
+        dealerPlay(cb);
+      } else {
+        cb();
+      }
+    }, 1000);
+}
 
 function render() {
   // renderBankEl();
