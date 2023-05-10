@@ -22,7 +22,7 @@ body {
 }
 
 #deal-btn {
-    margin: 10px 0 0;
+    margin: 5px 0;
     font-size: 35px;
     background-color: lightgrey;
 }
@@ -49,10 +49,6 @@ body {
     padding: 0px 8px;
     background-color: lightgrey;
 }
-   
-#wager {
-    font-size: 25px;
-}
 
 #msg {
     color: gold;
@@ -62,3 +58,9 @@ h3 {
     text-shadow: 0 0;
     color: #92832e;    
 }
+
+#wager {
+ font-size: 25px;
+ text-align: center;
+}
+
