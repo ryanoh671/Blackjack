@@ -73,6 +73,8 @@ function handleDeal() {
   outcome = null;
   deck = getNewShuffledDeck();
   shuffledDeck = getNewShuffledDeck();
+  dHand = [];
+  pHand = [];
   dHand.push(shuffledDeck.pop(), shuffledDeck.pop())
   pHand.push(shuffledDeck.pop(), shuffledDeck.pop())
   dTotal = getHandTotal(dHand);
@@ -93,7 +95,9 @@ function handleDeal() {
     bank += bet + (bet * 1.5);
   } else if (outcome === 'P') {
     bank += bet * 2;
-  } 
+  } else if (outcome === 'T') {
+    bank += bet;
+  }
   bet = 0;
 }
 
@@ -147,8 +151,8 @@ function renderControls() {
 function renderHands() {
   playerTotalEl.innerHTML = pTotal;
   dealerTotalEl.innerHTML = outcome ? dTotal : '??';
-  playerHandEl.innerHTML = pHand.map(card => `<div class="card large ${card.face}"></div>`).join('');
-  dealerHandEl.innerHTML = dHand.map((card, idx) => `<div class="card large ${idx === 1 && !outcome ? 'back' : card.face}"></div>`).join('');
+  playerHandEl.innerHTML = pHand.map(card => `<div class="card xlarge ${card.face}"></div>`).join('');
+  dealerHandEl.innerHTML = dHand.map((card, idx) => `<div class="card xlarge ${idx === 1 && !outcome ? 'back' : card.face}"></div>`).join('');
 }
 
 function getHandTotal(hand) {
