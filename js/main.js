@@ -117,10 +117,14 @@ function handleStand() {
     dealerPlay(function () {
       if (pTotal === dTotal) {
         outcome = 'T';
-      } else if (dTotal > pTotal) {
-        outcome = 'D';
+      } else if (dTotal === 21) {
+        outcome = 'DBJ'
+      } else if (dTotal > 21) {
+        outcome = 'P'
+      } else if (dTotal < pTotal) {
+        outcome = 'P'
       } else {
-        outcome = 'P';
+        outcome = 'D';
       }
       settleBet();
       render();
