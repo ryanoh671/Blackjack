@@ -11,6 +11,7 @@ html {
     background-attachment: fixed;
 }
 body {
+    text-shadow: 2px 2px black;
     color: #92832e;
     height: 90vh;
     /* margin: 0; */
@@ -39,6 +40,7 @@ body {
 #deal-btn {
     margin: 10px 0 0;
     font-size: 35px;
+    background-color: lightgrey;
 }
 
 #betting-controls {
@@ -55,13 +57,15 @@ body {
 #bet-controls > button {
     font-size: 25px;
     padding: 0px 10px;
+    background-color: lightgrey;
 }
 
 #play-btns > button {
-    font-size: 20px;
+    font-size: 25px;
     padding: 0px 8px;
+    background-color: lightgrey;
 }
    
 #wager {
-    font-size: 20px;
+    font-size: 25px;
 }

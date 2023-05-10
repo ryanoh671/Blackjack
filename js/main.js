@@ -106,11 +106,10 @@ function handleHit() {
   pTotal = getHandTotal(pHand);
   if (pTotal > 21) {
     outcome = 'D';
-    settleBet();
   }
+  settleBet();
   render();
 }
-
 
 function handleStand() {
   if (pTotal === dTotal) {
@@ -125,6 +124,7 @@ function handleStand() {
 }
 
 function render() {
+  // renderBankEl();
   renderHands();
   bankEl.innerHTML = bank;
   betEl.innerHTML = bet;
