@@ -1,17 +1,19 @@
 * {
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
+    margin: 2px;
 }
 
 html {
-    /* background: url("card-library/backimg.png"); */
+    background: url("card-library/backimg.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
 }
 body {
-    color: black;
+    color: #92832e;
+    font-size: 20px;
     height: 100vh;
     margin: 0;
     display: flex;
@@ -48,18 +50,40 @@ body {
 #deal-btn {
     /* height: 4vmin;
     width: 7vmin; */
-    margin: 10px 0 0;
+    /* margin: 10px 0 0; */
 }
 
 #betting-controls {
     text-align: center;
+    padding: 20px;
+}
+
+#bet-controls > button {
+    font-size: 20px;
+    padding: 20px;
+    color: black;
+    background-color: #92832e;
+    opacity: .9;
 }
 
 #bet-btns {
-    border: 2px solid #92832e;
+    /* border: 2px solid #92832e; */
 }
 
-#play-btns {
-    padding: 5px;
+#play-btns > button {
+    /* padding: 5px; */
+    color: black;
+    background-color: #92832e;
+    font-size: 20px;
+    padding: 20px;
+    opacity: .9;
 }
-  
+
+#deal-btn {
+    color: black;
+    background-color: #92832e;
+    padding: 20px;
+    
+    font-size: 30px;
+    opacity: .9;
+}

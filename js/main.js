@@ -36,6 +36,7 @@ const hitBtn = document.getElementById('hit-btn');
 const standBtn = document.getElementById('stand-btn');
 const betBtns = document.querySelectorAll('#bet-controls > button');
 const betControlsEl = document.getElementById('bet-controls');
+const bettingControlsEl = document.getElementById('betting-controls');
 
   /*----- event listeners -----*/
 
@@ -71,8 +72,9 @@ function handleBet(evt) {
 
 function handleDeal() {
   outcome = null;
-  deck = getNewShuffledDeck();
   shuffledDeck = getNewShuffledDeck();
+  dHand = [];
+  pHand = [];
   dHand.push(shuffledDeck.pop(), shuffledDeck.pop())
   pHand.push(shuffledDeck.pop(), shuffledDeck.pop())
   dTotal = getHandTotal(dHand);
@@ -93,12 +95,14 @@ function handleDeal() {
     bank += bet + (bet * 1.5);
   } else if (outcome === 'P') {
     bank += bet * 2;
-  } 
+  } else if (outcome === 'T') {
+    bank += bet;
+  }
   bet = 0;
 }
 
 function handleHit() {
-  pHand.push(deck.pop());
+  pHand.push(shuffledDeck.pop());
   pTotal = getHandTotal(pHand);
   if (pTotal > 21) {
     outcome = 'D';
@@ -109,16 +113,17 @@ function handleHit() {
 
 
 function handleStand() {
-  if (pTotal === dTotal) {
-    outcome = 'T';
-  } else if (dTotal > pTotal) {
-    outcome = 'D';
-  } else {
-    outcome = 'P';
-  }
-  settleBet();
-  render();
-}
+    if (pTotal === dTotal) {
+      outcome = 'T';
+    } else if (dTotal > pTotal) {
+      outcome = 'D';
+    } else {
+      outcome = 'P';
+    }
+    settleBet();
+    render();
+  };
+
 
 function render() {
   renderHands();
@@ -131,9 +136,11 @@ function render() {
 
 function renderBetBtns() {
   betBtns.forEach(function(btn) {
-  const btnAmt = parseInt(btn.innerText.replace('$', ''));
-  btn.disabled = btnAmt > bank;  
+    const btnAmt = parseInt(btn.innerText.replace('$', ''));
+    btn.disabled = btnAmt > bank;  
   });
+  // bettingControlsEl.style.backgroundColor = "lightgreen";
+  bettingControlsEl.style.backgroundColor = !handInPlay() ? 'white' : '';
 }
 function handInPlay() {
   return pHand.length && !outcome;
@@ -147,8 +154,8 @@ function renderControls() {
 function renderHands() {
   playerTotalEl.innerHTML = pTotal;
   dealerTotalEl.innerHTML = outcome ? dTotal : '??';
-  playerHandEl.innerHTML = pHand.map(card => `<div class="card ${card.face}"></div>`).join('');
-  dealerHandEl.innerHTML = dHand.map((card, idx) => `<div class="card ${idx === 1 && !outcome ? 'back' : card.face}"></div>`).join('');
+  playerHandEl.innerHTML = pHand.map(card => `<div class="card large ${card.face}"></div>`).join('');
+  dealerHandEl.innerHTML = dHand.map((card, idx) => `<div class="card large ${idx === 1 && !outcome ? 'back' : card.face}"></div>`).join('');
 }
 
 function getHandTotal(hand) {
