@@ -36,7 +36,7 @@ const hitBtn = document.getElementById('hit-btn');
 const standBtn = document.getElementById('stand-btn');
 const betBtns = document.querySelectorAll('#bet-controls > button');
 const betControlsEl = document.getElementById('bet-controls');
-const bettingControlsEl = document.getElementById('betting-controls');
+// const bettingControlsEl = document.getElementById('betting-controls');
 
   /*----- event listeners -----*/
 
@@ -139,16 +139,16 @@ function renderBetBtns() {
     const btnAmt = parseInt(btn.innerText.replace('$', ''));
     btn.disabled = btnAmt > bank;  
   });
-  // bettingControlsEl.style.backgroundColor = "lightgreen";
-  bettingControlsEl.style.backgroundColor = !handInPlay() ? 'white' : '';
 }
 function handInPlay() {
   return pHand.length && !outcome;
 }
 
 function renderControls() {
- betControlsEl.style.visibility = handInPlay() ? 'hidden' : 'visible';
+  betControlsEl.style.visibility = handInPlay() ? 'hidden' : 'visible';
+  // betControlsEl.style.backgroundColor = !handInPlay() ? 'white' : '';
  dealBtn.style.visibility = bet >= 50 && !handInPlay() ? 'visible' : 'hidden';
+ msgEl.style.visibility = handInPlay() ? 'hidden' : 'visible';
 }
 
 function renderHands() {

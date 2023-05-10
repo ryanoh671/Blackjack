@@ -11,30 +11,14 @@ html {
     background-attachment: fixed;
 }
 body {
-    text-shadow: 2px 2px black;
+    text-shadow: 3px 2px black;
     color: #92832e;
-    height: 100vh;
     margin: 0;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-#dealer-cards {
-    border: 2px dashed #92832e;
-}
-
-#dealer-cards img {
-    height: 25vmin;
-}
-
-#player-cards {
-    border: 2px dashed #92832e;
-}
-
-#player-cards img{
-    height: 25vmin;
 }
 
 #deal-btn {
@@ -49,7 +33,7 @@ body {
 
 #bet-controls {
     border: 5px solid #92832e;
-    background-color: white;
+    background-color: rgba(237, 229, 229, .7);
     padding: 5px;
     margin: 10px;
 }
@@ -68,4 +52,13 @@ body {
    
 #wager {
     font-size: 25px;
+}
+
+#msg {
+    color: gold;
+}
+
+h3 {
+    text-shadow: 0 0;
+    color: #92832e;    
 }
