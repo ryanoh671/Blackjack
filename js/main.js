@@ -106,11 +106,10 @@ function handleHit() {
   pTotal = getHandTotal(pHand);
   if (pTotal > 21) {
     outcome = 'D';
-    settleBet();
   }
+  settleBet();
   render();
 }
-
 
 function handleStand() {
     if (pTotal === dTotal) {
@@ -126,6 +125,7 @@ function handleStand() {
 
 
 function render() {
+  // renderBankEl();
   renderHands();
   bankEl.innerHTML = bank;
   betEl.innerHTML = bet;
@@ -154,8 +154,8 @@ function renderControls() {
 function renderHands() {
   playerTotalEl.innerHTML = pTotal;
   dealerTotalEl.innerHTML = outcome ? dTotal : '??';
-  playerHandEl.innerHTML = pHand.map(card => `<div class="card large ${card.face}"></div>`).join('');
-  dealerHandEl.innerHTML = dHand.map((card, idx) => `<div class="card large ${idx === 1 && !outcome ? 'back' : card.face}"></div>`).join('');
+  playerHandEl.innerHTML = pHand.map(card => `<div class="card xlarge ${card.face}"></div>`).join('');
+  dealerHandEl.innerHTML = dHand.map((card, idx) => `<div class="card xlarge ${idx === 1 && !outcome ? 'back' : card.face}"></div>`).join('');
 }
 
 function getHandTotal(hand) {

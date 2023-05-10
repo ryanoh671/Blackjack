@@ -1,7 +1,6 @@
 * {
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
-    margin: 2px;
 }
 
 html {
@@ -12,8 +11,8 @@ html {
     background-attachment: fixed;
 }
 body {
+    text-shadow: 2px 2px black;
     color: #92832e;
-    font-size: 20px;
     height: 100vh;
     margin: 0;
     display: flex;
@@ -38,52 +37,35 @@ body {
     height: 25vmin;
 }
 
-#hit-btn {
-    /* height: 4vmin;
-    width: 7vmin; */
-}
-#stand-btn {
-    /* height: 4vmin;
-    width: 7vmin; */
-}
-
 #deal-btn {
-    /* height: 4vmin;
-    width: 7vmin; */
-    /* margin: 10px 0 0; */
+    margin: 10px 0 0;
+    font-size: 35px;
+    background-color: lightgrey;
 }
 
 #betting-controls {
     text-align: center;
-    padding: 20px;
+}
+
+#bet-controls {
+    border: 5px solid #92832e;
+    background-color: white;
+    padding: 5px;
+    margin: 10px;
 }
 
 #bet-controls > button {
-    font-size: 20px;
-    padding: 20px;
-    color: black;
-    background-color: #92832e;
-    opacity: .9;
-}
-
-#bet-btns {
-    /* border: 2px solid #92832e; */
+    font-size: 25px;
+    padding: 0px 10px;
+    background-color: lightgrey;
 }
 
 #play-btns > button {
-    /* padding: 5px; */
-    color: black;
-    background-color: #92832e;
-    font-size: 20px;
-    padding: 20px;
-    opacity: .9;
+    font-size: 25px;
+    padding: 0px 8px;
+    background-color: lightgrey;
 }
-
-#deal-btn {
-    color: black;
-    background-color: #92832e;
-    padding: 20px;
-    
-    font-size: 30px;
-    opacity: .9;
+   
+#wager {
+    font-size: 25px;
 }
