@@ -37,6 +37,7 @@ let pTotal, dTotal; // best point value of hand
 let bank, bet; // bank how much money we have & bet is the amount of the bet
 let outcome; // result of the hand (see MSG_LOOKUP)
 let dealersTurn;
+// let playersTurn;
 
 /*----- cached elements  -----*/
 const dealBtn = document.getElementById('deal-btn');
@@ -61,12 +62,11 @@ const playBtns = document.querySelectorAll("#play-btns > button");
   
   
   /*----- functions -----*/
-  init() 
-
-
+init() 
 
 function init() {
   outcome = null;
+  // playersTurn = true;
   dealersTurn = false;
   dHand = [];
   pHand = [];
@@ -88,6 +88,7 @@ function handleBet(evt) {
 
 function handleDeal() {
   outcome = null;
+  // playersTurn = true;
   dealersTurn = false;
   shuffledDeck = getNewShuffledDeck();
   dHand = [];
@@ -101,6 +102,7 @@ function handleDeal() {
   } else if (dTotal === 21) {
     outcome = 'DBJ';
     dealersTurn = true;
+    // playersTurn =false;
   } else if (pTotal === 21) {
     outcome = 'PBJ';
   }
@@ -134,6 +136,7 @@ function handleHit() {
   pHand.push(shuffledDeck.pop());
   pTotal = getHandTotal(pHand);
   if (pTotal > 21) {
+    dealersTurn = 'true';
     outcome = 'D';
     bet = 0;
   } else if (pTotal === 21) {
@@ -164,7 +167,6 @@ function handleStand() {
 
 function dealerPlay(cb) {
   dealersTurn = true;
-  // outcome = 'D';
   renderHands();
   // while (dTotal < 17) 
     setTimeout(function() {
@@ -227,11 +229,6 @@ function getHandTotal(hand) {
     return total;
   }
 
-
-
-
-
-
 function buildMainDeck() {
   const deck = [];
   // Use nested forEach to generate card objects
@@ -260,7 +257,6 @@ function getNewShuffledDeck() {
   }
   return newShuffledDeck;
 }
-
 
 cashButtons.forEach(cashButton => {
   cashButton.addEventListener('click', () => {
