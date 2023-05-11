@@ -13,6 +13,32 @@ const MSG_LOOKUP = {
 
 const mainDeck = buildMainDeck();
 
+const audio1 = new Audio("css/sound-effects/cash.mp3");
+const cashButtons = document.querySelectorAll("#bet-controls > button");
+
+const audio2 = new Audio("css/sound-effects/deal.mp3");
+const dealBtnAudio = document.getElementById('deal-btn');
+
+const audio3 = new Audio("css/sound-effects/hit.mp3");
+const hitBtnAudio = document.getElementById('hit-btn');
+
+
+cashButtons.forEach(cashButton => {
+  cashButton.addEventListener('click', () => {
+      audio1.play(); 
+      audio1.currentTime = 0
+    });
+  });
+
+dealBtnAudio.addEventListener('click', () => {
+  audio2.play();
+  audio2.currentTime = 0
+});
+
+hitBtnAudio.addEventListener('click', () => {
+  audio3.play();
+  audio3.currentTime = 0
+});
 
 
 
@@ -192,8 +218,8 @@ function renderControls() {
 function renderHands() {
   playerTotalEl.innerHTML = pTotal;
   dealerTotalEl.innerHTML = outcome ? dTotal : '??';
-  playerHandEl.innerHTML = pHand.map(card => `<div class="card xlarge ${card.face}"></div>`).join('');
-  dealerHandEl.innerHTML = dHand.map((card, idx) => `<div class="card xlarge ${idx === 1 && !dealersTurn ? 'back' : card.face}"></div>`).join('');
+  playerHandEl.innerHTML = pHand.map(card => `<div class="card large ${card.face}"></div>`).join('');
+  dealerHandEl.innerHTML = dHand.map((card, idx) => `<div class="card large ${idx === 1 && !dealersTurn ? 'back' : card.face}"></div>`).join('');
 }
 
 function getHandTotal(hand) {
