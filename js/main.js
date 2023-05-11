@@ -22,23 +22,11 @@ const dealBtnAudio = document.getElementById('deal-btn');
 const audio3 = new Audio("css/sound-effects/hit.mp3");
 const hitBtnAudio = document.getElementById('hit-btn');
 
+const audio4 = new Audio("css/sound-effects/stand.wav");
+const standBtnAudio = document.getElementById('stand-btn');
 
-cashButtons.forEach(cashButton => {
-  cashButton.addEventListener('click', () => {
-      audio1.play(); 
-      audio1.currentTime = 0
-    });
-  });
 
-dealBtnAudio.addEventListener('click', () => {
-  audio2.play();
-  audio2.currentTime = 0
-});
 
-hitBtnAudio.addEventListener('click', () => {
-  audio3.play();
-  audio3.currentTime = 0
-});
 
 
 
@@ -270,3 +258,26 @@ function getNewShuffledDeck() {
   }
   return newShuffledDeck;
 }
+
+
+cashButtons.forEach(cashButton => {
+  cashButton.addEventListener('click', () => {
+      audio1.play(); 
+      audio1.currentTime = 0
+    });
+  });
+
+dealBtnAudio.addEventListener('click', () => {
+  audio2.play();
+  audio2.currentTime = 0
+});
+
+hitBtnAudio.addEventListener('click', () => {
+  audio3.play();
+  audio3.currentTime = 0
+});
+
+standBtnAudio.addEventListener('click', () => {
+  audio4.play();
+  audio4.currentTime = 0
+});
