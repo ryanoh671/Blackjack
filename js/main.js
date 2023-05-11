@@ -66,7 +66,6 @@ init()
 
 function init() {
   outcome = null;
-  // playersTurn = true;
   dealersTurn = false;
   dHand = [];
   pHand = [];
@@ -81,14 +80,12 @@ function handleBet(evt) {
    if (btn.tagName !== 'BUTTON') return;
    const betAmt = parseInt(btn.innerText.replace('$', ''));
    bet += betAmt;
-   console.log("betAmt", bet);
    bank -= betAmt;
    render();
 }
 
 function handleDeal() {
   outcome = null;
-  // playersTurn = true;
   dealersTurn = false;
   shuffledDeck = getNewShuffledDeck();
   dHand = [];
@@ -102,7 +99,6 @@ function handleDeal() {
   } else if (dTotal === 21) {
     outcome = 'DBJ';
     dealersTurn = true;
-    // playersTurn =false;
   } else if (pTotal === 21) {
     outcome = 'PBJ';
   }
@@ -114,21 +110,16 @@ function handleDeal() {
     if (outcome === 'PBJ') {
     bank += bet + (bet * 1.5);
     bet = 0;
-    playBtns.disabled;
   } else if (outcome === 'P') {
     bank += (bet * 2);
     bet = 0;
-    playBtns.disabled;
   } else if (outcome === 'T') {
     bank += bet;
     bet = 0;
-    playBtns.disabled;
   } else if (outcome === 'D') {
     bet = 0;
-    playBtns.disabled;
   } else if (outcome === 'DBJ') {
     bet = 0;
-    playBtns.disabled;
   }
 }
 
@@ -142,7 +133,8 @@ function handleHit() {
   } else if (pTotal === 21) {
     outcome = 'PBJ';
     bet = 0;
-  }
+  };
+
   settleBet();
   render();
 }
@@ -182,7 +174,6 @@ function dealerPlay(cb) {
 }
 
 function render() {
-  // renderBankEl();
   renderHands();
   bankEl.innerHTML = bank;
   betEl.innerHTML = bet;
@@ -205,6 +196,13 @@ function renderControls() {
   betControlsEl.style.visibility = handInPlay() ? 'hidden' : 'visible';
   dealBtn.style.visibility = bet >= 50 && !handInPlay() ? 'visible' : 'hidden';
   msgEl.style.visibility = handInPlay() ? 'hidden' : 'visible';
+  if (outcome) {
+    hitBtn.disabled = true;
+    standBtn.disabled =true;
+  } else {
+    hitBtn.disabled = false;
+    standBtn.disabled = false;
+  }
 }
 
 function renderHands() {
@@ -217,7 +215,6 @@ function renderHands() {
 function getHandTotal(hand) {
     let total = 0;
     let aces = 0;
-    console.log(hand);
     hand.forEach(function(card) {
       total += card.value;
       if (card.value === 11) aces++;
@@ -279,3 +276,10 @@ standBtnAudio.addEventListener('click', () => {
   audio4.play();
   audio4.currentTime = 0
 });
+
+function disablePlayBtns() {
+  if (outcome) playBtns.disabled;
+}
+
+disablePlayBtns()
+
