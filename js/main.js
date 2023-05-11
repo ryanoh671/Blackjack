@@ -53,7 +53,8 @@ const standBtn = document.getElementById('stand-btn');
 const betBtns = document.querySelectorAll('#bet-controls > button');
 const betControlsEl = document.getElementById('bet-controls');
 const playBtns = document.querySelectorAll("#play-btns > button");
-  /*----- event listeners -----*/
+const finalMsgEl = document.getElementById('final-msg');
+/*----- event listeners -----*/
 
   dealBtn.addEventListener('click', handleDeal);
   document.getElementById('bet-controls').addEventListener('click', handleBet);
@@ -121,6 +122,7 @@ function handleDeal() {
   } else if (outcome === 'DBJ') {
     bet = 0;
   }
+  // renderMsg();
 }
 
 function handleHit() {
@@ -180,6 +182,7 @@ function render() {
   renderControls();
   renderBetBtns();
   msgEl.innerHTML = MSG_LOOKUP[outcome];
+  renderFinalMsg();
 };
 
 function renderBetBtns() {
@@ -198,7 +201,7 @@ function renderControls() {
   msgEl.style.visibility = handInPlay() ? 'hidden' : 'visible';
   if (outcome) {
     hitBtn.disabled = true;
-    standBtn.disabled =true;
+    standBtn.disabled = true;
   } else {
     hitBtn.disabled = false;
     standBtn.disabled = false;
@@ -277,9 +280,9 @@ standBtnAudio.addEventListener('click', () => {
   audio4.currentTime = 0
 });
 
-function disablePlayBtns() {
-  if (outcome) playBtns.disabled;
+function renderFinalMsg() {
+  if ((bet === 0) && (bank === 0)) {
+    finalMsgEl.innerHTML = "GAMEOVER - Player Is Out of $$";
+    finalMsgEl.style.color = 'RED';
+  }
 }
-
-disablePlayBtns()
-

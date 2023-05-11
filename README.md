@@ -1,10 +1,11 @@
-# <Your Project's Title>
-A description of your game. Background info of the game is a nice touch.
+# BLACKJACK
+
+Blackjack, or twenty-one, is a card game where the objective is to be dealt cards totaling a higher value than those of the dealer, but not exceeding 21. Aces count as 1 or 11, and face cards as 10. 
 
 # Screenshot
 
-<img src="url to your image on imgur">
-<img src="url to your image on imgur">
+<img src="https://i.imgur.com/SfLYCDZ.png" height= 500px>
+<img src="https://i.imgur.com/PPYOkId.png" height= 500px>
 
 # Technologies Used
 
