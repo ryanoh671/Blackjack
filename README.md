@@ -6,7 +6,11 @@ Blackjack, or twenty-one, is a card game where the objective is to be dealt card
 
 <img src="https://i.imgur.com/SfLYCDZ.png" height= 500px>
 <img src="https://i.imgur.com/PPYOkId.png" height= 500px>
-
+<style>
+  .img {
+    display: inline-block;
+  }
+</style>
 # Technologies Used
 
 - JavaScript
