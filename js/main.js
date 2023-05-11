@@ -22,6 +22,7 @@ let pHand, dHand; // player and dealer hands (arrays)
 let pTotal, dTotal; // best point value of hand
 let bank, bet; // bank how much money we have & bet is the amount of the bet
 let outcome; // result of the hand (see MSG_LOOKUP)
+let dealersTurn;
 
 /*----- cached elements  -----*/
 const dealBtn = document.getElementById('deal-btn');
@@ -53,6 +54,7 @@ const betControlsEl = document.getElementById('bet-controls');
 
 function init() {
   outcome = null;
+  dealersTurn = false;
   dHand = [];
   pHand = [];
   pTotal = dTotal = 0;
@@ -66,12 +68,14 @@ function handleBet(evt) {
    if (btn.tagName !== 'BUTTON') return;
    const betAmt = parseInt(btn.innerText.replace('$', ''));
    bet += betAmt;
+   console.log("betAmt", bet);
    bank -= betAmt;
    render();
 }
 
 function handleDeal() {
   outcome = null;
+  dealersTurn = false;
   shuffledDeck = getNewShuffledDeck();
   dHand = [];
   pHand = [];
@@ -83,6 +87,7 @@ function handleDeal() {
     outcome = 'T';
   } else if (dTotal === 21) {
     outcome = 'DBJ';
+    dealersTurn = true;
   } else if (pTotal === 21) {
     outcome = 'PBJ';
   }
@@ -93,12 +98,20 @@ function handleDeal() {
   function settleBet() {
     if (outcome === 'PBJ') {
     bank += bet + (bet * 1.5);
+    bet = 0;
   } else if (outcome === 'P') {
-    bank += bet * 2;
+    bank += (bet * 2);
+    bet = 0;
+    console.log(bet);
+    console.log(bank);
   } else if (outcome === 'T') {
     bank += bet;
+    bet = 0;
+  } else if (outcome === 'D') {
+    bet = 0;
+  } else if (outcome === 'DBJ') {
+    bet = 0;
   }
-  bet = 0;
 }
 
 function handleHit() {
@@ -106,8 +119,10 @@ function handleHit() {
   pTotal = getHandTotal(pHand);
   if (pTotal > 21) {
     outcome = 'D';
-  } else if (pTotal = 21) {
+    bet = 0;
+  } else if (pTotal === 21) {
     outcome = 'PBJ';
+    bet = 0;
   }
   settleBet();
   render();
@@ -132,11 +147,13 @@ function handleStand() {
   }
 
 function dealerPlay(cb) {
-  outcome = 'D';
+  dealersTurn = true;
+  // outcome = 'D';
   renderHands();
   // while (dTotal < 17) 
     setTimeout(function() {
       if (dTotal < 17) {
+        // dHand[1] = shuffledDeck.pop();
         dHand.push(shuffledDeck.pop());
         dTotal = getHandTotal(dHand);
         dealerPlay(cb);
@@ -168,21 +185,21 @@ function handInPlay() {
 
 function renderControls() {
   betControlsEl.style.visibility = handInPlay() ? 'hidden' : 'visible';
-  // betControlsEl.style.backgroundColor = !handInPlay() ? 'white' : '';
- dealBtn.style.visibility = bet >= 50 && !handInPlay() ? 'visible' : 'hidden';
- msgEl.style.visibility = handInPlay() ? 'hidden' : 'visible';
+  dealBtn.style.visibility = bet >= 50 && !handInPlay() ? 'visible' : 'hidden';
+  msgEl.style.visibility = handInPlay() ? 'hidden' : 'visible';
 }
 
 function renderHands() {
   playerTotalEl.innerHTML = pTotal;
   dealerTotalEl.innerHTML = outcome ? dTotal : '??';
   playerHandEl.innerHTML = pHand.map(card => `<div class="card xlarge ${card.face}"></div>`).join('');
-  dealerHandEl.innerHTML = dHand.map((card, idx) => `<div class="card xlarge ${idx === 1 && !outcome ? 'back' : card.face}"></div>`).join('');
+  dealerHandEl.innerHTML = dHand.map((card, idx) => `<div class="card xlarge ${idx === 1 && !dealersTurn ? 'back' : card.face}"></div>`).join('');
 }
 
 function getHandTotal(hand) {
     let total = 0;
     let aces = 0;
+    console.log(hand);
     hand.forEach(function(card) {
       total += card.value;
       if (card.value === 11) aces++;
