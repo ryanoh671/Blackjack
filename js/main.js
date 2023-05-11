@@ -51,8 +51,7 @@ const hitBtn = document.getElementById('hit-btn');
 const standBtn = document.getElementById('stand-btn');
 const betBtns = document.querySelectorAll('#bet-controls > button');
 const betControlsEl = document.getElementById('bet-controls');
-// const bettingControlsEl = document.getElementById('betting-controls');
-
+const playBtns = document.querySelectorAll("#play-btns > button");
   /*----- event listeners -----*/
 
   dealBtn.addEventListener('click', handleDeal);
@@ -113,18 +112,21 @@ function handleDeal() {
     if (outcome === 'PBJ') {
     bank += bet + (bet * 1.5);
     bet = 0;
+    playBtns.disabled;
   } else if (outcome === 'P') {
     bank += (bet * 2);
     bet = 0;
-    console.log(bet);
-    console.log(bank);
+    playBtns.disabled;
   } else if (outcome === 'T') {
     bank += bet;
     bet = 0;
+    playBtns.disabled;
   } else if (outcome === 'D') {
     bet = 0;
+    playBtns.disabled;
   } else if (outcome === 'DBJ') {
     bet = 0;
+    playBtns.disabled;
   }
 }
 
