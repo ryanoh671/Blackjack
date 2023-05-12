@@ -152,10 +152,8 @@ function handleStand() {
 function dealerPlay(cb) {
   dealersTurn = true;
   renderHands();
-  // while (dTotal < 17) 
     setTimeout(function() {
       if (dTotal < 17) {
-        // dHand[1] = shuffledDeck.pop();
         dHand.push(shuffledDeck.pop());
         dTotal = getHandTotal(dHand);
         dealerPlay(cb);
@@ -206,28 +204,25 @@ function renderHands() {
 }
 
 function getHandTotal(hand) {
-    let total = 0;
-    let aces = 0;
-    hand.forEach(function(card) {
-      total += card.value;
-      if (card.value === 11) aces++;
-    });
-    while (total > 21 && aces) {
-      total -= 10;
-      aces--;
-    }
-    return total;
+  let total = 0;
+  let aces = 0;
+  hand.forEach(function(card) {
+    total += card.value;
+    if (card.value === 11) aces++;
+  });
+  while (total > 21 && aces) {
+    total -= 10;
+    aces--;
   }
+  return total;
+}
 
 function buildMainDeck() {
   const deck = [];
-  // Use nested forEach to generate card objects
   suits.forEach(function(suit) {
     ranks.forEach(function(rank) {
       deck.push({
-        // The 'face' property maps to the library's CSS classes for cards
         face: `${suit}${rank}`,
-        // Setting the 'value' property for game of blackjack, not war
         value: Number(rank) || (rank === 'A' ? 11 : 10)
       });
     });
@@ -236,13 +231,10 @@ function buildMainDeck() {
 };
 
 function getNewShuffledDeck() {
-  //Create a copy of the mainDeck
   const tempDeck = [...mainDeck];
   const newShuffledDeck = [];
   while (tempDeck.length) {
-    //Get a random index for a card still in the tempDeck
     const rndIdx = Math.floor(Math.random() * tempDeck.length);
-    // Note the [0] after splice - this is because splice always returns an array and we just want the card object in that array
     newShuffledDeck.push(tempDeck.splice(rndIdx, 1)[0]); 
   }
   return newShuffledDeck;

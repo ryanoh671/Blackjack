@@ -19,5 +19,6 @@ https://ryanoh671.github.io/Blackjack/
 
 # Next Steps
 
-- CSS Animation
-- Mobile friendly
+- More CSS Animation
+- More audio when win or lose / add background music with toggle button
+- More mobile friendly

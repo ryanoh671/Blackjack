@@ -10,6 +10,7 @@ html {
     background-position: center center;
     background-attachment: fixed;
 }
+
 body {
     text-shadow: 3px 2px black;
     color: #92832e;
@@ -66,7 +67,6 @@ h2 {
 }
 
 #game-name {
-    /* background-color: lightgrey; */
     border-bottom: 5px dashed black;
     border-top: 5px dashed black;
     padding: 5px;
