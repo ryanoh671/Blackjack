@@ -6,11 +6,7 @@ Blackjack, or twenty-one, is a card game where the objective is to be dealt card
 
 <img src="https://i.imgur.com/SfLYCDZ.png" height= 500px>
 <img src="https://i.imgur.com/PPYOkId.png" height= 500px>
-<style>
-  .img {
-    display: inline-block;
-  }
-</style>
+
 # Technologies Used
 
 - JavaScript
@@ -20,10 +16,11 @@ Blackjack, or twenty-one, is a card game where the objective is to be dealt card
 
 # Getting Started
 
-[Click to View Project Planning](your Trello url here)
-[Click to Play Connect Four!](your deployment url here)
+
+Deployed link ->
+https://ryanoh671.github.io/Blackjack/
 
 # Next Steps
 
-- Future enhancement one...
-- Future enhancement two... 
+- CSS Animation
+- Mobile friendly
