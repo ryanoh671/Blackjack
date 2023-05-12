@@ -1,6 +1,9 @@
-# BLACKJACK
+# ♦♥ BLACKJACK ♠♣ 
 
-Blackjack, or twenty-one, is a card game where the objective is to be dealt cards totaling a higher value than those of the dealer, but not exceeding 21. Aces count as 1 or 11, and face cards as 10. 
+Blackjack, formerly known as twenty-one, is the most widely played casino banking game in the world. It is a card game where the objective is to be dealt cards totaling a higher value than those of the dealer, up to but not exceeding 21. 
+
+There is actually a theory that Blackjack is an invention by the Romans. The theory stands because Romans loved to gamble, but it is not confirmed. It is believed that Romans played this game with wooden blocks with different numbers painted on them, instead of paper cards.
+
 
 # Screenshot
 
@@ -8,7 +11,7 @@ Blackjack, or twenty-one, is a card game where the objective is to be dealt card
 
 # Technologies Used
 
-- <img src="https://i.imgur.com/9NVDDPe.png" height=30px;> 
+- <img src="https://i.imgur.com/9NVDDPe.png" height=35px;> 
 - CardStarter CSS Library
 
 # Getting Started

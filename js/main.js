@@ -132,21 +132,21 @@ function handleHit() {
 }
 
 function handleStand() {
-    dealerPlay(function () {
-      if (pTotal === dTotal) {
-        outcome = 'T';
-      } else if (dTotal === 21) {
-        outcome = 'DBJ'
-      } else if (dTotal > 21) {
-        outcome = 'P'
-      } else if (dTotal < pTotal) {
-        outcome = 'P'
-      } else {
-        outcome = 'D';
-      }
-      settleBet();
-      render();
-    });
+  dealerPlay(function () {
+    if (pTotal === dTotal) {
+      outcome = 'T';
+    } else if (dTotal === 21) {
+      outcome = 'DBJ'
+    } else if (dTotal > 21) {
+      outcome = 'P'
+    } else if (dTotal < pTotal) {
+      outcome = 'P'
+    } else {
+      outcome = 'D';
+    }
+    settleBet();
+    render();
+  });
   }
 
 function dealerPlay(cb) {
