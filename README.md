@@ -1,4 +1,4 @@
-# ♦♥ BLACKJACK ♠♣ 
+# ♦♠ BLACKJACK ♣♥ 
 
 Blackjack, formerly known as twenty-one, is the most widely played casino banking game in the world. It is a card game where the objective is to be dealt cards totaling a higher value than those of the dealer, up to but not exceeding 21. 
 
