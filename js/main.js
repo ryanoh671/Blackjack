@@ -13,12 +13,14 @@ const MSG_LOOKUP = {
 
 const mainDeck = buildMainDeck();
 const audio1 = new Audio("css/sound-effects/cash.mp3");
+audio1.volume=.1;
 const cashButtons = document.querySelectorAll("#bet-controls > button");
 const audio2 = new Audio("css/sound-effects/deal.mp3");
 const dealBtnAudio = document.getElementById('deal-btn');
 const audio3 = new Audio("css/sound-effects/hit.mp3");
 const hitBtnAudio = document.getElementById('hit-btn');
 const audio4 = new Audio("css/sound-effects/stand.wav");
+audio4.volume=.1;
 const standBtnAudio = document.getElementById('stand-btn');
 
 /*----- state variables -----*/
