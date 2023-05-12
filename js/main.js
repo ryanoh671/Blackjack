@@ -12,23 +12,14 @@ const MSG_LOOKUP = {
 }
 
 const mainDeck = buildMainDeck();
-
 const audio1 = new Audio("css/sound-effects/cash.mp3");
 const cashButtons = document.querySelectorAll("#bet-controls > button");
-
 const audio2 = new Audio("css/sound-effects/deal.mp3");
 const dealBtnAudio = document.getElementById('deal-btn');
-
 const audio3 = new Audio("css/sound-effects/hit.mp3");
 const hitBtnAudio = document.getElementById('hit-btn');
-
 const audio4 = new Audio("css/sound-effects/stand.wav");
 const standBtnAudio = document.getElementById('stand-btn');
-
-
-
-
-
 
 /*----- state variables -----*/
 let deck; // shuffled deck
@@ -37,7 +28,6 @@ let pTotal, dTotal; // best point value of hand
 let bank, bet; // bank how much money we have & bet is the amount of the bet
 let outcome; // result of the hand (see MSG_LOOKUP)
 let dealersTurn;
-// let playersTurn;
 
 /*----- cached elements  -----*/
 const dealBtn = document.getElementById('deal-btn');
@@ -54,13 +44,12 @@ const betBtns = document.querySelectorAll('#bet-controls > button');
 const betControlsEl = document.getElementById('bet-controls');
 const playBtns = document.querySelectorAll("#play-btns > button");
 const finalMsgEl = document.getElementById('final-msg');
-/*----- event listeners -----*/
 
+/*----- event listeners -----*/
   dealBtn.addEventListener('click', handleDeal);
   document.getElementById('bet-controls').addEventListener('click', handleBet);
   hitBtn.addEventListener('click', handleHit);
   standBtn.addEventListener('click', handleStand);
-  
   
   /*----- functions -----*/
 init() 
@@ -122,7 +111,6 @@ function handleDeal() {
   } else if (outcome === 'DBJ') {
     bet = 0;
   }
-  // renderMsg();
 }
 
 function handleHit() {
